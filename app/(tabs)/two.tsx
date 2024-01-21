@@ -1,31 +1,55 @@
-import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { getJournalEntries } from '../api/SaveJournal'; // Import the fetching function
 
 export default function TabTwoScreen() {
+  const [entries, setEntries] = useState([]);
+
+  useEffect(() => {
+    const fetchEntries = async () => {
+      try {
+        const data = await getJournalEntries();
+        setEntries(data);
+      } catch (error) {
+        console.error('Error fetching entries:', error);
+      }
+    };
+
+    fetchEntries();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
-    </View>
+    <ScrollView style={styles.container}>
+      {entries.map((entry, index) => (
+        <View key={index} style={styles.entryContainer}>
+          <Text style={styles.entryTitle}>{entry.title}</Text>
+          <View style={styles.separator} />
+          <Text>{entry.content.substring(0, 120)}...</Text>
+        </View>
+      ))}
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 10,
   },
-  title: {
-    fontSize: 20,
+  entryContainer: {
+    backgroundColor: '#f2f2f2', // Change as needed
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 20,
+  },
+  entryTitle: {
+    fontSize: 22,
     fontWeight: 'bold',
+    marginBottom: 10,
   },
   separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+    borderBottomColor: 'lightgrey',
+    borderBottomWidth: 1,
+    marginBottom: 10,
   },
 });

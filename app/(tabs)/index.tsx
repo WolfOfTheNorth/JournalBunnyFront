@@ -1,15 +1,26 @@
-// TabOneScreen
+// app/(tabs)/index.tsx
 import React, { useState } from 'react';
-import { StyleSheet, Button, View } from 'react-native';
+import { StyleSheet, Button, View, Alert } from 'react-native';
 import { Text } from '@/components/Themed';
 import JournalEntryInput from '../../components/JournalEntryInput';
+import { saveJournalEntry } from '../api/SaveJournal'; // Import the API function
 
 export default function TabOneScreen() {
   const [entry, setEntry] = useState('');
+  const [title, setTitle] = useState('');
 
-  const handleSave = () => {
-    console.log('Journal Entry:', entry); // Here you can replace with actual save logic
-    // For now, it just logs the entry to the console
+  const handleSave = async () => {
+    // set the title to todays date
+    setTitle(new Date().toLocaleDateString());
+    try {
+      const savedEntry = await saveJournalEntry({ title: title, content: entry });
+      console.log('Entry saved:', savedEntry);
+      Alert.alert("Success", "Journal entry saved successfully");
+      setEntry(''); // Clear the input field after saving
+    } catch (error) {
+      console.error('Failed to save entry:', error);
+      Alert.alert("Error", "Failed to save journal entry");
+    }
   };
 
   return (
