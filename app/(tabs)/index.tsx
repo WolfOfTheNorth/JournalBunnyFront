@@ -1,14 +1,22 @@
-import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+// TabOneScreen
+import React, { useState } from 'react';
+import { StyleSheet, Button, View } from 'react-native';
+import { Text } from '@/components/Themed';
+import JournalEntryInput from '../../components/JournalEntryInput';
 
 export default function TabOneScreen() {
+  const [entry, setEntry] = useState('');
+
+  const handleSave = () => {
+    console.log('Journal Entry:', entry); // Here you can replace with actual save logic
+    // For now, it just logs the entry to the console
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+      <Text style={styles.title}>My Day Today</Text>
+      <JournalEntryInput onChangeText={setEntry} />
+      <Button title="Save Entry" onPress={handleSave} />
     </View>
   );
 }
@@ -16,16 +24,10 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 10,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
   },
 });
