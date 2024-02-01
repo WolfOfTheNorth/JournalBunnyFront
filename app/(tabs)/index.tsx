@@ -1,8 +1,8 @@
 // app/(tabs)/index.tsx
 import React, { useState } from 'react';
 import { StyleSheet, Button, View, Alert } from 'react-native';
-import { Text } from '@/components/Themed';
-import JournalEntryInput from '../../components/JournalEntryInput';
+import { Text } from '@/components/Themes/Themed';
+import JournalEntryInput from '../../components/Editor/JournalEntryInput';
 import { saveJournalEntry } from '../api/SaveJournal'; // Import the API function
 
 export default function TabOneScreen() {

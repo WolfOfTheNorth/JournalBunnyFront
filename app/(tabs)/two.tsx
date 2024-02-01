@@ -22,9 +22,9 @@ export default function TabTwoScreen() {
     <ScrollView style={styles.container}>
       {entries.map((entry, index) => (
         <View key={index} style={styles.entryContainer}>
-          <Text style={styles.entryTitle}>{entry.title}</Text>
+          <Text style={styles.entryTitle}>{entry?.title}</Text>
           <View style={styles.separator} />
-          <Text>{entry.content.substring(0, 120)}...</Text>
+          <Text>{entry?.content.substring(0, 120)}...</Text>
         </View>
       ))}
     </ScrollView>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   entryContainer: {
-    backgroundColor: '#f2f2f2', // Change as needed
+    backgroundColor: '#f2f2f2',
     borderRadius: 10,
     padding: 15,
     marginBottom: 20,

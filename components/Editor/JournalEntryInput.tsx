@@ -1,7 +1,8 @@
+import { State } from 'expo-router/build/fork/getPathFromState';
 import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
-const JournalEntryInput = ({ onChangeText }) => {
+const JournalEntryInput = ({ onChangeText }: any) => {
   return (
     <TextInput
       style={styles.input}
