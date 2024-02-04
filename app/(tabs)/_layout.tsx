@@ -1,3 +1,8 @@
+// GCloud Auth0 Client ID Web: 777521442556-5m2ktp6b830gdlhdpi1g34aei1mt65gd.apps.googleusercontent.com
+// GCloud Auth0 Client Secret Web: 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
+// IOS: 777521442556-oq7ajt5dcclnpaqq4ql7v8c3drktps2h.apps.googleusercontent.com
+// Android: 777521442556-5jua1vvqm762vqvmq8gde6ikfhsq7pj8.apps.googleusercontent.com
+
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';

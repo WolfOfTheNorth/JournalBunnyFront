@@ -1,10 +1,12 @@
+// This file is the root of your app's navigation tree. It is responsible for
+// rendering the top-level navigation components, and for providing theme
+// information to them.
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-
 import { useColorScheme } from '@/components/Themes/useColorScheme';
 
 export {
